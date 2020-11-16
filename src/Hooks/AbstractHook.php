@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook\Hooks;
 
-use TypistTech\WPContainedHook\ContainerAwareTrait;
-
 abstract class AbstractHook implements HookInterface
 {
-    use ContainerAwareTrait;
-
     /**
      * The number of arguments that should be passed to the $callback.
      *
@@ -30,6 +26,8 @@ abstract class AbstractHook implements HookInterface
      * @var string
      */
     protected $classIdentifier;
+    
+    protected $container;
 
     /**
      * The name of the WordPress hook that is being registered.
@@ -56,16 +54,18 @@ abstract class AbstractHook implements HookInterface
      *                                  Default is 1.
      */
     public function __construct(
+        $container,
         string $hook,
         string $classIdentifier,
         string $callbackMethod,
-        ?int $priority = null,
-        ?int $acceptedArgs = null
+        int $priority,
+        int $acceptedArgs,
     ) {
+        $this->container = $container;
         $this->hook = $hook;
         $this->classIdentifier = $classIdentifier;
         $this->callbackMethod = $callbackMethod;
-        $this->priority = $priority ?? 10;
-        $this->acceptedArgs = $acceptedArgs ?? 1;
+        $this->priority = $priority;
+        $this->acceptedArgs = $acceptedArgs;
     }
 }
