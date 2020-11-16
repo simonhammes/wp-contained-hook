@@ -50,8 +50,22 @@ class HookInjector
         );
     }
     
-    public function addAction() {
-
+    public function addAction(
+        string $hook, 
+        string $className, 
+        string $methodName, 
+        int $priority = 10,
+        int $acceptedArgs = 1,
+    ) {
+        $action = new Hooks\Action(
+            $this->container, 
+            $hook, 
+            $className, 
+            $methodName, 
+            $priority,
+            $acceptedArgs
+        );
+        $this->hooks[] = $action;
     }
 
     /**
