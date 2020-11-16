@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook\Hooks;
 
-use TypistTech\WPContainedHook\ContainerAwareInterface;
-
-interface HookInterface extends ContainerAwareInterface
+interface HookInterface
 {
     /**
      * Add this hook to WordPress via one of:
