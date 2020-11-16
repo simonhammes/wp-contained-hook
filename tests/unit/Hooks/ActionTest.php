@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace TypistTech\WPContainedHook\Test\Hooks;
 
 use Codeception\Test\Unit;
+use DI\Container;
 use Mockery;
 use Psr\Container\ContainerInterface;
 use stdClass;
 use TypistTech\WPContainedHook\ContainerAwareInterface;
+use TypistTech\WPContainedHook\HookInjector;
 use TypistTech\WPContainedHook\Hooks\Action;
 use TypistTech\WPContainedHook\Test\ContainerAwareTestTrait;
 use WP_Mock;
@@ -66,6 +68,22 @@ class ActionTest extends Unit
                   ->once();
 
         $action->setContainer($container);
+
+        $action->run();
+    }
+    
+    public function testRunWithNoArgs2()
+    {
+        $action = new Action(
+            'my-hook',
+            'my-class-id',
+            'my-callback-method',
+            123,
+            456
+        );
+        
+        $hi = new HookInjector(new Container());
+        $hi->addAction('hook', TestClasses\Shortcode::class, 'render');
 
         $action->run();
     }
