@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 use TypistTech\WPContainedHook\ContainerAwareInterface;
 use TypistTech\WPContainedHook\Hooks\Action;
 use TypistTech\WPContainedHook\Hooks\Filter;
-use TypistTech\WPContainedHook\Loader;
+use TypistTech\WPContainedHook\HookInjector;
 
 class LoaderTest extends Unit
 {
@@ -41,7 +41,7 @@ class LoaderTest extends Unit
                ->withNoArgs()
                ->once();
 
-        $loader = new Loader($container);
+        $loader = new HookInjector($container);
         $loader->add($action, $filter);
 
         $loader->run();
@@ -51,6 +51,6 @@ class LoaderTest extends Unit
     {
         $container = Mockery::mock(ContainerInterface::class);
 
-        return new Loader($container);
+        return new HookInjector($container);
     }
 }
