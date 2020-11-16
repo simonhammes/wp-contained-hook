@@ -14,10 +14,8 @@ use TypistTech\WPContainedHook\Hooks\HookInterface;
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  */
-class HookInjector implements ContainerAwareInterface
+class HookInjector
 {
-    use ContainerAwareTrait;
-
     /**
      * Array of hooks registered with WordPress.
      *
@@ -50,6 +48,10 @@ class HookInjector implements ContainerAwareInterface
                 SORT_REGULAR
             )
         );
+    }
+    
+    public function addAction() {
+
     }
 
     /**
