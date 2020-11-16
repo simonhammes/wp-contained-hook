@@ -59,7 +59,7 @@ abstract class AbstractHook implements HookInterface
         string $classIdentifier,
         string $callbackMethod,
         int $priority,
-        int $acceptedArgs,
+        int $acceptedArgs
     ) {
         $this->container = $container;
         $this->hook = $hook;
